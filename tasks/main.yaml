@@ -18,3 +18,19 @@
     owner: stack 
     group: stack 
   become: True
+
+- name:  Hostname
+  shell: hostnamectl set-hostname undercloud.gec.test
+  become: True
+
+- name:  Hostname
+  shell: hostnamectl set-hostname --transient undercloud.gec.test
+  become: True
+
+- name: Entry in hosts
+  lineinfile:
+    path: /etc/hosts
+    line: "10.0.0.1  undercloud.gec.test undercloud"
+
+
+
