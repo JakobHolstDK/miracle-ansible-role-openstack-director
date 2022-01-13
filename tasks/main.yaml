@@ -7,7 +7,7 @@
   file:
     path: /home/stack/templates
     state: directory
-    user: stack 
+    owner: stack 
     group: stack 
   become: True
 
@@ -15,6 +15,6 @@
   file:
     path: /home/stack/images
     state: directory
-    user: stack 
+    owner: stack 
     group: stack 
   become: True
