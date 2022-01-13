@@ -1,0 +1,6 @@
+---
+# Handler to start chosen display manager
+- name: Restart display manager
+  service:
+    name: "{{xorg_display_manager_service}}"
+    state: restarted

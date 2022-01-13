@@ -1,0 +1,11 @@
+# This file is created and managed by Ansible
+# Do not change it otherwise Ansible will change it back at next run
+
+# Read and parsed by systemd-localed. It's probably wise not to edit this file
+# manually too freely.
+Section "InputClass"
+        Identifier "system-keyboard"
+        MatchIsKeyboard "on"
+        Option "XkbLayout" "{{ xorg_x11_layout|default('us') }}"
+        Option "XkbModel" "{{ xorg_x11_model|default('us') }}"
+EndSection

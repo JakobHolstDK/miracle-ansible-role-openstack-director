@@ -1,0 +1,20 @@
+---
+- name: Set a hostname
+  ansible.builtin.hostname:
+    name: director
+
+- name: Creates directory
+  file:
+    path: /home/stack/templates
+    state: directory
+    user: stack 
+    group: stack 
+  become: True
+
+- name: Creates directory
+  file:
+    path: /home/stack/images
+    state: directory
+    user: stack 
+    group: stack 
+  become: True

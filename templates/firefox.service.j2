@@ -1,0 +1,8 @@
+[Unit]
+After=x11.service
+
+[Service]
+ExecStart=firefox --display=:0 --new-window http://172.17.42.253/{{ hostname }}
+
+[Install]
+WantedBy=multi-user.target
