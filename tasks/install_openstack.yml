@@ -46,7 +46,7 @@
 - name: install_openstack | generate undercloud.conf"
   ansible.builtin.template:
     src: undercloud.conf.j2
-    dest: /etc/undercloud.conf
+    dest: /home/stack/undercloud.conf
     owner: stack
     group: stack
     mode: '0644'
