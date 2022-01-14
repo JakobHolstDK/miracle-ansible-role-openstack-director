@@ -34,20 +34,24 @@
 #  shell: "subscription-manager clean"
 #  become: True
 
-- name: Register as user (joe_user) with password (somepass) and auto-subscribe to available content.
-  community.general.redhat_subscription:
-    state: present
-    username: "{{ rhuser }}"
-    password: "{{ rhpass }}"
-    auto_attach: false
-
-- name: "prepare| Attach openstack subscription ID."
-  community.general.redhat_subscription:
-    state: present
-    username: "{{ rhuser }}"
-    password: "{{ rhpass }}"
-    pool_ids: "{{ poolid }}"
-    force: True
+#- name: Register as user (joe_user) with password (somepass) and auto-subscribe to available content.
+#  community.general.redhat_subscription:
+#    state: present
+#    username: "{{ rhuser }}"
+#    password: "{{ rhpass }}"
+#    auto_attach: false
+#
+#- name: "prepare| Attach openstack subscription ID."
+#  community.general.redhat_subscription:
+#    state: present
+#    username: "{{ rhuser }}"
+#    password: "{{ rhpass }}"
+#    pool_ids: "{{ poolid }}"
+#    force: True
+#  become: True
+#
+- name: "prepare| attach pool"
+  shell: "subscription-manager attach --pool={{ poolid }}"
   become: True
 
 - name: "prepare| disable all repos"
