@@ -1,8 +1,8 @@
 - name: "main| Check if we have prepped the server before"
   stat:
     path: "/etc/ostackprepped"
-    register: register_name
+  register: register_trace
 
 - name: Drepare director server
   include_tasks: prepare.yml
-  when: not register_name.stat.exists
+  when: not register_trace.stat.exists
