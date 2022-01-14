@@ -15,6 +15,8 @@ dnf module disable -y container-tools:rhel8
 dnf module enable -y container-tools:3.0
 dnf update -y
 
+exit 0
+
 
 
 
