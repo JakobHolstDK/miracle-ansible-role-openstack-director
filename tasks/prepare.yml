@@ -29,6 +29,14 @@
     line: "10.0.0.1  undercloud.gec.test undercloud"
   become: True
 
+- name: Copy script to force registration
+  ansible.builtin.copy:
+    src: forceregistration.sh
+    dest: /usr/local/bin/forceregistration.sh
+    owner: root
+    group: root
+    mode: '0755'
+
 #This cant be hardcoded in the furture
 #- name: "prepare| clean"
 #  shell: "subscription-manager clean"
@@ -50,8 +58,8 @@
 #    force: True
 #  become: True
 #
-- name: "prepare| attach pool"
-  shell: "subscription-manager attach --pool={{ poolid }}"
+- name: "prepare| Force registration"
+  shell: "/usr/local/bin/forceregistration.sh"
   become: True
 
 - name: "prepare| disable all repos"
