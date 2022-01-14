@@ -30,6 +30,17 @@
   become: True
 
 ##Here an auto subscribe should happen
+- name: Register as user (joe_user) with password (somepass) and auto-subscribe to available content.
+  community.general.redhat_subscription:
+    state: present
+    username: joe_user
+    password: somepass
+    auto_attach: true
+
+#This cant be hardcoded in the furture
+- name: "prepare| enable relevant repos"
+  shell: "subscription-manager clean"
+  become: True
 
 - name: "prepare| Attach openstack subscription ID."
   community.general.redhat_subscription:
