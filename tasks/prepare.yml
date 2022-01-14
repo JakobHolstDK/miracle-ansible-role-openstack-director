@@ -1,9 +1,5 @@
 ---
-- name: Set a hostname
-  ansible.builtin.hostname:
-    name: director
-
-- name: Creates directory
+- name: "prepare| Creates directory for templates"
   file:
     path: /home/stack/templates
     state: directory
@@ -11,7 +7,7 @@
     group: stack 
   become: True
 
-- name: Creates directory
+- name: "prepare| Creates directory for templates"
   file:
     path: /home/stack/images
     state: directory
@@ -19,27 +15,58 @@
     group: stack 
   become: True
 
-- name:  Hostname
+- name: "prepare| set hostname #1"
   shell: hostnamectl set-hostname undercloud.gec.test
   become: True
 
-- name:  Hostname
+- name: "prepare| set hostname #2"
   shell: hostnamectl set-hostname --transient undercloud.gec.test
   become: True
 
-- name: Entry in hosts
+- name: "prepare| set entry in etc/hosts"
   lineinfile:
     path: /etc/hosts
     line: "10.0.0.1  undercloud.gec.test undercloud"
+  become: True
 
 ##Here an auto subscribe should happen
 
-- name: Same as above but subscribe to a specific pool by ID.
+- name: "prepare| Attach openstack subscription ID."
   community.general.redhat_subscription:
     state: present
-    username: joe_user
-    password: somepass
+    username: "{{ rhuser }}"
+    password: "{{ rhpass }}"
     pool_ids: "{{ poolid }}"
+  become: True
 
+- name: "prepare| disable all repos"
+  shell: "subscription-manager repos --disable=*"
+  become: True
+
+#This cant be hardcoded in the furture
+- name: "prepare| enable relevant repos"
+  shell: "subscription-manager repos --enable=rhel-8-for-x86_64-baseos-eus-rpms  --enable=rhel-8-for-x86_64-appstream-eus-rpms  --enable=rhel-8-for-x86_64-highavailability-eus-rpms  --enable=ansible-2.9-for-rhel-8-x86_64-rpms  --enable=openstack-16.2-for-rhel-8-x86_64-rpms  --enable=fast-datapath-for-rhel-8-x86_64-rpms"
+  become: True
+
+#This cant be hardcoded in the furture
+- name: "prepare| disable container tools"
+  shell: "dnf module disable -y container-tools:rhel8"
+  become: True
+
+
+#This cant be hardcoded in the furture
+- name: "prepare| disable all repos"
+  shell: "dnf module enable -y container-tools:3.0"
+  become: True
+
+#This cant be hardcoded in the furture
+- name: "prepare| leave a trace"
+  shell: "touch /etc/ostackprepped"
+  become: True
+
+#This cant be hardcoded in the furture
+- name: "prepare| disable all repos"
+  shell: "reboot"
+  become: True
 
 
