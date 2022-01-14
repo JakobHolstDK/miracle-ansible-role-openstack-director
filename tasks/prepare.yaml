@@ -32,5 +32,13 @@
     path: /etc/hosts
     line: "10.0.0.1  undercloud.gec.test undercloud"
 
+##Here an auto subscribe should happen
+
+- name: Same as above but subscribe to a specific pool by ID.
+  community.general.redhat_subscription:
+    state: present
+    username: joe_user
+    password: somepass
+    pool_ids: {{ poolid }}
 
 
