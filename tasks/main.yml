@@ -1,6 +1,6 @@
 - name: "main| Check if we have prepped the server before"
   stat:
-    path: ["/etc/ostackprepped"]
+    path: "/etc/ostackprepped"
     register: register_name
 
 - name: Drepare director server
