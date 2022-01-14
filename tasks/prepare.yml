@@ -30,9 +30,9 @@
   become: True
 
 #This cant be hardcoded in the furture
-- name: "prepare| clean"
-  shell: "subscription-manager clean"
-  become: True
+#- name: "prepare| clean"
+#  shell: "subscription-manager clean"
+#  become: True
 
 - name: Register as user (joe_user) with password (somepass) and auto-subscribe to available content.
   community.general.redhat_subscription:
