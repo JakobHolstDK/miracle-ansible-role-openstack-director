@@ -48,6 +48,7 @@
     username: "{{ rhuser }}"
     password: "{{ rhpass }}"
     pool_ids: "{{ poolid }}"
+    force: True
   become: True
 
 - name: "prepare| disable all repos"
@@ -63,7 +64,6 @@
 - name: "prepare| disable container tools"
   shell: "dnf module disable -y container-tools:rhel8"
   become: True
-
 
 #This cant be hardcoded in the furture
 - name: "prepare| disable all repos"
