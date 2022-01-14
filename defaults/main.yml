@@ -44,6 +44,7 @@ local_ip: 192.168.42.1/24
 local_mtu: 1500
 #local_subnet = ctlplane-subnet
 net_config_override: /etc/undercloud-os-net-config.yaml
+disable_net_config_override: ""
 #networks_file = <None>
 output_dir: /var/log/ostack
 #overcloud_domain_name = localdomain
