@@ -15,13 +15,13 @@
     state: latest
   become: True
 
-- name: install_openstack |  Create 
+- name: install_openstack |  install ceph-ansible
   dnf:
     name: ceph-ansible
     state: latest
   become: True
 
-- name: Template a file to /etc/file.conf
+- name: install_openstack | generate contaoiner params
   ansible.builtin.template:
     src: containers_prepare_parameters.yml.j2
     dest: /etc/containers_prepare_parameters.yml
@@ -29,3 +29,9 @@
     group: stack
     mode: '0644'
   become: True
+
+- name: install_openstack | Run openstack tripleo container image prepare 
+  shell: openstack tripleo container image prepare -e ~/containers-prepare-parameter.yaml
+  become: True
+
+  
