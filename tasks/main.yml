@@ -3,6 +3,11 @@
     path: "/etc/ostackprepped"
   register: register_trace
 
-- name: Drepare director server
+- name: "main| prepare director server"
   include_tasks: prepare.yml
   when: not register_trace.stat.exists
+
+- name: "main | install_openstack"
+  include_tasks: install_openstack.yml
+
+
