@@ -75,3 +75,5 @@ output_dir: /var/log/ostack
 #host_routes = [{destination: 10.10.10.0/24, nexthop: 192.168.24.1}]
 #inspection_iprange = 192.168.24.100,192.168.24.120
 #masquerade = false
+build_directory: /var/log/ostack
+
