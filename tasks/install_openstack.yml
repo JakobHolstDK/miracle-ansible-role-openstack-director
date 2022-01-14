@@ -3,5 +3,29 @@
   dnf:
     name: python3-tripleoclient
     state: latest
+  become: True
 
+- name: "install_openstack | subscription-manager repos --enable=rhceph-4-tools-for-rhel-8-x86_64-rpms"
+  shell: "subscription-manager repos --enable=rhceph-4-tools-for-rhel-8-x86_64-rpms"
+  become: True
 
+- name: install_openstack |Install the latest version of ceph-ansible
+  dnf:
+    name: ceph-ansible
+    state: latest
+  become: True
+
+- name: install_openstack |  Create 
+  dnf:
+    name: ceph-ansible
+    state: latest
+  become: True
+
+- name: Template a file to /etc/file.conf
+  ansible.builtin.template:
+    src: containers_prepare_parameters.yml.j2
+    dest: /etc/containers_prepare_parameters.yml
+    owner: stack
+    group: stack
+    mode: '0644'
+  become: True
