@@ -38,9 +38,10 @@
     auto_attach: true
 
 #This cant be hardcoded in the furture
-- name: "prepare| enable relevant repos"
+- name: "prepare| clean"
   shell: "subscription-manager clean"
   become: True
+
 
 - name: "prepare| Attach openstack subscription ID."
   community.general.redhat_subscription:
