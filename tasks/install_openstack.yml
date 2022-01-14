@@ -43,4 +43,4 @@
     mode: '0644'
   become: True
 
-- name: install_openstack | Run openstack tripleo container image prepare 
+#- name: install_openstack | Run openstack tripleo container image prepare 
