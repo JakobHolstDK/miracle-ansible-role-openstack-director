@@ -43,4 +43,15 @@
     mode: '0644'
   become: True
 
+- name: install_openstack | generate undercloud.conf"
+  ansible.builtin.template:
+    src: undercloud.conf.j2
+    dest: /etc/undercloud.conf
+    owner: stack
+    group: stack
+    mode: '0644'
+  become: True
+
+#- name: install_openstack | Run openstack tripleo container image prepare 
+
 #- name: install_openstack | Run openstack tripleo container image prepare 
