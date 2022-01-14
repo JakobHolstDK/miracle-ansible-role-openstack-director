@@ -39,6 +39,7 @@
     state: present
     username: joe_user
     password: somepass
-    pool_ids: {{ poolid }}
+    pool_ids: "{{ poolid }}"
+
 
 
