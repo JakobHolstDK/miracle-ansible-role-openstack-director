@@ -14,3 +14,5 @@ __xorg_fonts:
 # Default display manager to install
 __xorg_display_manager_package: gdm3
 __xorg_display_manager_service: gdm3
+
+
