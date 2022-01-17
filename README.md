@@ -1,6 +1,19 @@
 Role Name
 =========
 
+Sandbox notes:
+
+useradd stack
+passwd stack  # specify a password
+
+echo "stack ALL=(root) NOPASSWD:ALL" | tee -a /etc/sudoers.d/stack
+chmod 0440 /etc/sudoers.d/stack
+
+
+
+
+
+
 A brief description of the role goes here.
 
 Requirements
