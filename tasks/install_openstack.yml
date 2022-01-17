@@ -24,7 +24,7 @@
 - name: install_openstack | generate contaoiner params
   ansible.builtin.template:
     src: containers_prepare_parameters.yml.j2
-    dest: /etc/containers_prepare_parameters.yml
+    dest: /home/stack/containers_prepare_parameters.yml
     owner: stack
     group: stack
     mode: '0644'
@@ -37,7 +37,7 @@
 - name: install_openstack | generate local network file
   ansible.builtin.template:
     src: undercloud-os-net-config.yaml.j2
-    dest: /etc/undercloud-os-net-config.yaml
+    dest: /home/stack/undercloud-os-net-config.yaml
     owner: stack
     group: stack
     mode: '0644'
