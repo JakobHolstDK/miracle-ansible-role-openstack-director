@@ -4,7 +4,14 @@
     name: stack
     comment: "openstack service account"
     uid: 1666
-    group: admin
+
+- name: add to sodoers
+  shell: 'echo "stack ALL=(root) NOPASSWD:ALL" | tee -a /etc/sudoers.d/stack'
+  become: True
+
+- name: add to set perm
+  shell: chmod 0440 /etc/sudoers.d/stack
+  become: True
 
 - name: "prepare| Creates directory for templates"
   file:
