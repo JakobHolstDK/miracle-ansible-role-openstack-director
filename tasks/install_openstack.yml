@@ -24,11 +24,7 @@
   become: True
 
 - name: install_openstack | Run openstack tripleo container image prepare 
-  shell: |
-    source /home/stack/stackrc
-    openstack tripleo container image prepare default \
-    --local-push-destination \
-    --output-env-file /home/stack/containers_prepare_parameters.yml
+  shell: /home/stack/containers_prepare_parameters.sh
   become: True
   become_user: stack
   args:
