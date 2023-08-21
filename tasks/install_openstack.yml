@@ -5,10 +5,6 @@
     state: latest
   become: True
 
-- name: "install_openstack | subscription-manager repos --enable=rhceph-4-tools-for-rhel-8-x86_64-rpms"
-  shell: "subscription-manager repos --enable=rhceph-4-tools-for-rhel-8-x86_64-rpms"
-  become: True
-
 - name: install_openstack |Install the latest version of ceph-ansible
   dnf:
     name: ceph-ansible
@@ -21,7 +17,7 @@
     state: latest
   become: True
 
-- name: install_openstack | generate contaoiner params
+- name: install_openstack | generate container params
   ansible.builtin.template:
     src: containers_prepare_parameters.yml.j2
     dest: /home/stack/containers_prepare_parameters.yml

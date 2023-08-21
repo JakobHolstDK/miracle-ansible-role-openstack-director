@@ -1,19 +1,19 @@
 ---
-- name: Add the user 'stack' with a specific uid and a primary group of 'admin'
+- name: "prepare | Add the user 'stack' with a specific uid and a primary group of 'admin'"
   ansible.builtin.user:
     name: stack
     comment: "openstack service account"
     uid: 1666
 
-- name: add to sodoers
+- name: "prepare |add to sodoers"
   shell: 'echo "stack ALL=(root) NOPASSWD:ALL" | tee -a /etc/sudoers.d/stack'
   become: True
 
-- name: add to set perm
+- name: "prepare | add to set perm"
   shell: chmod 0440 /etc/sudoers.d/stack
   become: True
 
-- name: "prepare| Creates directory for templates"
+- name: "prepare | Creates directory for templates"
   file:
     path: /home/stack/templates
     state: directory
@@ -21,7 +21,7 @@
     group: stack 
   become: True
 
-- name: "prepare| Creates directory for templates"
+- name: "prepare | Creates directory for templates"
   file:
     path: /home/stack/images
     state: directory
@@ -29,21 +29,21 @@
     group: stack 
   become: True
 
-- name: "prepare| set hostname #1"
+- name: "prepare | set hostname #1"
   shell: hostnamectl set-hostname undercloud.gec.test
   become: True
 
-- name: "prepare| set hostname #2"
+- name: "prepare | set hostname #2"
   shell: hostnamectl set-hostname --transient undercloud.gec.test
   become: True
 
-- name: "prepare| set entry in etc/hosts"
+- name: "prepare | set entry in etc/hosts"
   lineinfile:
     path: /etc/hosts
     line: "10.0.0.1  undercloud.gec.test undercloud"
   become: True
 
-- name: Copy script to force registration
+- name: "prepate | Copy script to force registration"
   ansible.builtin.template:
     src: forceregistration.sh.j2
     dest: /usr/local/bin/forceregistration.sh
@@ -51,59 +51,8 @@
     group: root
     mode: '0755'
 
-#This cant be hardcoded in the furture
-#- name: "prepare| clean"
-#  shell: "subscription-manager clean"
-#  become: True
-
-#- name: Register as user (joe_user) with password (somepass) and auto-subscribe to available content.
-#  community.general.redhat_subscription:
-#    state: present
-#    username: "{{ rhuser }}"
-#    password: "{{ rhpass }}"
-#    auto_attach: false
-#
-#- name: "prepare| Attach openstack subscription ID."
-#  community.general.redhat_subscription:
-#    state: present
-#    username: "{{ rhuser }}"
-#    password: "{{ rhpass }}"
-#    pool_ids: "{{ poolid }}"
-#    force: True
-#  become: True
-#
 - name: "prepare| Force registration"
   shell: "/usr/local/bin/forceregistration.sh"
   become: True
-
-- name: "prepare| disable all repos"
-  shell: "subscription-manager repos --disable=*"
-  become: True
-
-#This cant be hardcoded in the furture
-#- name: "prepare| enable relevant repos"
-#  shell: "subscription-manager repos --enable=rhel-8-for-x86_64-baseos-eus-rpms  --enable=rhel-8-for-x86_64-appstream-eus-rpms  --enable=rhel-8-for-x86_64-highavailability-eus-rpms  --enable=ansible-2.9-for-rhel-8-x86_64-rpms  --enable=openstack-16.2-for-rhel-8-x86_64-rpms  --enable=fast-datapath-for-rhel-8-x86_64-rpms"
-# become: True
-
-#This cant be hardcoded in the furture
-#- name: "prepare| disable container tools"
-#  shell: "dnf module disable -y container-tools:rhel8"
-#  become: True
-
-#This cant be hardcoded in the furture
-#- name: "prepare| disable all repos"
-#  shell: "dnf module enable -y container-tools:3.0"
-#  become: True
-
-#This cant be hardcoded in the furture
-#- name: "prepare| leave a trace"
-#  shell: "touch /etc/ostackprepped"
-#  become: True
-
-#This cant be hardcoded in the furture this nust be built in ansible autmation
-
-#- name: "prepare| disable all repos"
-#  shell: "reboot"
-# become: True
 
 
