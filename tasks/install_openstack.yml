@@ -23,13 +23,6 @@
     mode: '0644'
   become: True
 
-- name: install_openstack | Run openstack tripleo container image prepare 
-  shell: /home/stack/containers_prepare_parameters.sh
-  become: True
-  become_user: stack
-  args:
-    chdir: /home/stack
-
 - name: install_openstack | generate local network file
   ansible.builtin.template:
     src: undercloud-os-net-config.yaml.j2
