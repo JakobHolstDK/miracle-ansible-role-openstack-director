@@ -45,7 +45,7 @@
 
 - name: Copy script to force registration
   ansible.builtin.template:
-    src: forceregistration.sh
+    src: forceregistration.sh.j2
     dest: /usr/local/bin/forceregistration.sh
     owner: root
     group: root
