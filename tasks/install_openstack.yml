@@ -7,6 +7,15 @@
 
 - name: install_openstack | generate container params
   ansible.builtin.template:
+    src: containers_prepare_parameters.sh.j2
+    dest: /home/stack/containers_prepare_parameters.sh
+    owner: stack
+    group: stack
+    mode: '0755'
+  become: True
+
+- name: install_openstack | generate container params
+  ansible.builtin.template:
     src: containers_prepare_parameters.yml.j2
     dest: /home/stack/containers_prepare_parameters.yml
     owner: stack
@@ -14,15 +23,12 @@
     mode: '0644'
   become: True
 
-- name: install_openstack | Run openstack tripleo container image prepare test
-  shell: touch /home/stack/test
-  become: True
-  become_user: stack
-  args:
-    chdir: /home/stack
-
 - name: install_openstack | Run openstack tripleo container image prepare 
-  shell: openstack tripleo container image prepare -e ~/containers-prepare-parameter.yaml
+  shell: |
+    source /home/stack/stackrc
+    openstack tripleo container image prepare default \
+    --local-push-destination \
+    --output-env-file /home/stack/containers_prepare_parameters.yml
   become: True
   become_user: stack
   args:
