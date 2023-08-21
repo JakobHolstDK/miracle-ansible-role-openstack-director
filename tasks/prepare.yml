@@ -44,7 +44,7 @@
   become: True
 
 - name: Copy script to force registration
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: forceregistration.sh
     dest: /usr/local/bin/forceregistration.sh
     owner: root
