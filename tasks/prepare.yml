@@ -81,24 +81,24 @@
   become: True
 
 #This cant be hardcoded in the furture
-- name: "prepare| enable relevant repos"
-  shell: "subscription-manager repos --enable=rhel-8-for-x86_64-baseos-eus-rpms  --enable=rhel-8-for-x86_64-appstream-eus-rpms  --enable=rhel-8-for-x86_64-highavailability-eus-rpms  --enable=ansible-2.9-for-rhel-8-x86_64-rpms  --enable=openstack-16.2-for-rhel-8-x86_64-rpms  --enable=fast-datapath-for-rhel-8-x86_64-rpms"
-  become: True
+#- name: "prepare| enable relevant repos"
+#  shell: "subscription-manager repos --enable=rhel-8-for-x86_64-baseos-eus-rpms  --enable=rhel-8-for-x86_64-appstream-eus-rpms  --enable=rhel-8-for-x86_64-highavailability-eus-rpms  --enable=ansible-2.9-for-rhel-8-x86_64-rpms  --enable=openstack-16.2-for-rhel-8-x86_64-rpms  --enable=fast-datapath-for-rhel-8-x86_64-rpms"
+# become: True
 
 #This cant be hardcoded in the furture
-- name: "prepare| disable container tools"
-  shell: "dnf module disable -y container-tools:rhel8"
-  become: True
+#- name: "prepare| disable container tools"
+#  shell: "dnf module disable -y container-tools:rhel8"
+#  become: True
 
 #This cant be hardcoded in the furture
-- name: "prepare| disable all repos"
-  shell: "dnf module enable -y container-tools:3.0"
-  become: True
+#- name: "prepare| disable all repos"
+#  shell: "dnf module enable -y container-tools:3.0"
+#  become: True
 
 #This cant be hardcoded in the furture
-- name: "prepare| leave a trace"
-  shell: "touch /etc/ostackprepped"
-  become: True
+#- name: "prepare| leave a trace"
+#  shell: "touch /etc/ostackprepped"
+#  become: True
 
 #This cant be hardcoded in the furture
 - name: "prepare| disable all repos"
