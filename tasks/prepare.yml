@@ -100,9 +100,10 @@
 #  shell: "touch /etc/ostackprepped"
 #  become: True
 
-#This cant be hardcoded in the furture
-- name: "prepare| disable all repos"
-  shell: "reboot"
-  become: True
+#This cant be hardcoded in the furture this nust be built in ansible autmation
+
+#- name: "prepare| disable all repos"
+#  shell: "reboot"
+# become: True
 
 
