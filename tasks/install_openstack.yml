@@ -5,7 +5,7 @@
     state: latest
   become: True
 
-- name: install_openstack | generate container params
+- name: install_openstack | generate container params script
   ansible.builtin.template:
     src: containers_prepare_parameters.sh.j2
     dest: /home/stack/containers_prepare_parameters.sh
