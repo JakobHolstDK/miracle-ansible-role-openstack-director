@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+subscription-manager register --org={{ org }} --activation={{ activation_key }}
+
+POOLID=`subscription-manager list --available --all --matches="Red Hat OpenStack"| grep "Pool ID:" |awk '{ print $3 }'`
+subscription-manager attach --pool=$POOLID
+subscription-manager release --set={{ rhel_version }}
+
+subscription-manager repos --disable=*
+subscription-manager repos \
+--enable=rhel-{{ rhel }}-for-x86_64-baseos-eus-rpms \
+--enable=rhel-{{ rhel }}-for-x86_64-appstream-eus-rpms \
+--enable=rhel-{{ rhel }}-for-x86_64-highavailability-eus-rpms \
+--enable=openstack-{{ openstack_release }}-for-rhel-8-x86_64-rpms \
+--enable=rhel-{{ rhel }}-for-x86_64-baseos-rpms \
+--enable= rhel-{rhel }}-for-x86_64-appstream-rpms \
+--enable=fast-datapath-for-rhel-{{ rhel }}-x86_64-rpms
+
+dnf update -y
+
+exit 0
+
+
+
+
+
