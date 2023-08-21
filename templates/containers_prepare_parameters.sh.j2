@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
 env > env.log
+export HOME=/home/stack
+export USER=stack
+
 
 
 openstack tripleo container image prepare -e ~/containers-prepare-parameter.yaml > ~/containers-prepare-parameter.log 2>&1
