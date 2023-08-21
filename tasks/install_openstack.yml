@@ -17,7 +17,7 @@
 - name: install_openstack | Run openstack tripleo container image prepare 
   shell: openstack tripleo container image prepare -e ~/containers-prepare-parameter.yaml
   become: True
-  becmoe_user: stack
+  become_user: stack
 
 - name: install_openstack | generate local network file
   ansible.builtin.template:
