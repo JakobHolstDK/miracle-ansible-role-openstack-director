@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+env > env.log
+
+
 openstack tripleo container image prepare -e ~/containers-prepare-parameter.yaml > ~/containers-prepare-parameter.log 2>&1
 
 
