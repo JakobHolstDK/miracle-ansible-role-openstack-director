@@ -10,7 +10,7 @@ subscription-manager repos \
 --enable=rhel-{{ rhel }}-for-x86_64-baseos-eus-rpms \
 --enable=rhel-{{ rhel }}-for-x86_64-appstream-eus-rpms \
 --enable=rhel-{{ rhel }}-for-x86_64-highavailability-eus-rpms \
---enable=openstack-{{ openstack_release }}-for-rhel-8-x86_64-rpms \
+--enable=openstack-{{ openstack_release }}-for-rhel-{{ rhel }}-x86_64-rpms \
 --enable=rhel-{{ rhel }}-for-x86_64-baseos-rpms \
 --enable=rhel-{{ rhel }}-for-x86_64-appstream-rpms \
 --enable=fast-datapath-for-rhel-{{ rhel }}-x86_64-rpms

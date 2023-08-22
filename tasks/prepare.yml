@@ -30,17 +30,11 @@
   become: True
 
 - name: "prepare | set hostname #1"
-  shell: hostnamectl set-hostname undercloud.gec.test
+  shell: hostnamectl set-hostname {{ ansible_hostname }} --static
   become: True
 
 - name: "prepare | set hostname #2"
-  shell: hostnamectl set-hostname --transient undercloud.gec.test
-  become: True
-
-- name: "prepare | set entry in etc/hosts"
-  lineinfile:
-    path: /etc/hosts
-    line: "10.0.0.1  undercloud.gec.test undercloud"
+  shell: hostnamectl set-hostname --transient {{ ansible_hostname }}
   become: True
 
 - name: "prepate | Copy script to force registration"
