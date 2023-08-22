@@ -2,8 +2,7 @@
 
 subscription-manager register --org={{ org }} --activation={{ activation_key }}
 
-POOLID=`subscription-manager list --available --all --matches="Red Hat OpenStack"| grep "Pool ID:" |awk '{ print $3 }'`
-subscription-manager attach --pool=$POOLID
+subscription-manager attach --pool={{ pool_id }}
 subscription-manager release --set={{ rhel_version }}
 
 subscription-manager repos --disable=*
